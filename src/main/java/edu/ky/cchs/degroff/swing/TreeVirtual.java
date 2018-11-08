@@ -6,8 +6,8 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,6 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import edu.ky.cchs.degroff.ITree;
+import edu.ky.cchs.degroff.util.TreeUtil;
 
 public class TreeVirtual extends JPanel implements ITree, ActionListener
     {
@@ -33,8 +34,9 @@ public class TreeVirtual extends JPanel implements ITree, ActionListener
     private long startTime;
     List<String> timeCapture = new ArrayList<>();
 
-    private final String LABEL_TIMECAP = "Time Capture";
-    private final String LABEL_TIMECAP_BIG = "Time Capture BIG";
+    private final String LABEL_VERSE1 = "Verse 1";
+    private final String LABEL_VERSE2 = "Verse 2";
+    private final String LABEL_BRIDGE = "Bridge";
     private final String LABEL_DUMP = "Time Cap Dump";
 
     public TreeVirtual()
@@ -55,7 +57,10 @@ public class TreeVirtual extends JPanel implements ITree, ActionListener
             // -----------------------------------------------------------------------------------
             // Add Start Button
             // imgTree = ImageIO.read( new File( "src/main/resources/Tree.jpg" ) );
-            imgTree = ImageIO.read( new File( "Tree.jpg" ) );
+            try ( InputStream is = TreeUtil.getResource( "Tree.jpg" ) )
+                {
+                imgTree = ImageIO.read( is );
+                }
 
             // -----------------------------------------------------------------------------------
             // Initialize Strands
@@ -63,14 +68,20 @@ public class TreeVirtual extends JPanel implements ITree, ActionListener
 
             // -----------------------------------------------------------------------------------
             // Add Time Capture Buttons
-            bStart = new JButton( LABEL_TIMECAP ); // button to change color to magenta
+            bStart = new JButton( LABEL_VERSE1 ); // button to capture verse 2
             bStart.setBackground( Color.decode( "#66FF33" ) );
             bStart.setOpaque( true );
             bStart.addActionListener( this );
             add( bStart );
 
-            bStart = new JButton( LABEL_TIMECAP_BIG ); // button to change color to magenta
+            bStart = new JButton( LABEL_VERSE2 ); // button to capture verse 2
             bStart.setBackground( Color.decode( "#DF7401" ) );
+            bStart.setOpaque( true );
+            bStart.addActionListener( this );
+            add( bStart );
+
+            bStart = new JButton( LABEL_BRIDGE ); // Button to capture Bridge
+            bStart.setBackground( Color.decode( "#F1C40F" ) );
             bStart.setOpaque( true );
             bStart.addActionListener( this );
             add( bStart );
@@ -85,7 +96,7 @@ public class TreeVirtual extends JPanel implements ITree, ActionListener
             }
         catch ( IOException ex )
             {
-            // handle exception...
+            ex.printStackTrace();
             }
         }
 
@@ -124,11 +135,14 @@ public class TreeVirtual extends JPanel implements ITree, ActionListener
             String action = actEvent.getActionCommand();
             switch ( action )
                 {
-                case LABEL_TIMECAP:
-                    addTimeCapture( "REG" );
+                case LABEL_VERSE1:
+                    addTimeCapture( " [VERSE 01]" );
                 break;
-                case LABEL_TIMECAP_BIG:
-                    addTimeCapture( "BIG" );
+                case LABEL_VERSE2:
+                    addTimeCapture( " [VERSE 02]" );
+                break;
+                case LABEL_BRIDGE:
+                    addTimeCapture( " [BRIDGE]" );
                 break;
                 case LABEL_DUMP:
                     dumpTimeCap();
@@ -154,7 +168,7 @@ public class TreeVirtual extends JPanel implements ITree, ActionListener
         // -----------------------------------------------------------------------------------
         // Calculate the current time compared to the song
         long timecap = System.currentTimeMillis() - startTime;
-        timeCapture.add( timecap + ":XXX:XXX-" + label );
+        timeCapture.add( timecap + ":XXX:XXX:" + label );
         }
 
     @Override

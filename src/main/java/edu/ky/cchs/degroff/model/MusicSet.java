@@ -1,10 +1,12 @@
 package edu.ky.cchs.degroff.model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import edu.ky.cchs.degroff.util.TreeUtil;
 
 public class MusicSet
     {
@@ -13,26 +15,31 @@ public class MusicSet
     private boolean isVirtual;
     private List<Instruction> instructions = new ArrayList<>();
 
-    public MusicSet( String instructionFile ) throws FileNotFoundException
+    public MusicSet( String instructionFile ) throws IOException
         {
         // ----------------------------------------------------------------------
         // Use Scanner to read in the text file
-        File file = new File( instructionFile );
-        Scanner sc = new Scanner( file );
-
-        // ----------------------------------------------------------------------
-        // The first line should be where the MP3 file is found
-        musicFile = sc.nextLine();
-
-        // ----------------------------------------------------------------------
-        // The first line should be where the MP3 file is found
-        setVirtual( Boolean.parseBoolean( sc.nextLine() ) );
-
-        // ----------------------------------------------------------------------
-        // The rest of the lines are instructions to add
-        while ( sc.hasNextLine() )
+        System.out.println( "Reading instructions [" + instructionFile + "]" );
+        try ( InputStream resourceInputStream = TreeUtil.getResource( instructionFile ) )
             {
-            instructions.add( new Instruction( sc.nextLine() ) );
+            Scanner sc = new Scanner( resourceInputStream );
+            // File file = new File( instructionFile );
+            // Scanner sc = new Scanner( file );
+
+            // ----------------------------------------------------------------------
+            // The first line should be where the MP3 file is found
+            musicFile = sc.nextLine().trim();
+
+            // ----------------------------------------------------------------------
+            // The first line should be where the MP3 file is found
+            setVirtual( Boolean.parseBoolean( sc.nextLine() ) );
+
+            // ----------------------------------------------------------------------
+            // The rest of the lines are instructions to add
+            while ( sc.hasNextLine() )
+                {
+                instructions.add( new Instruction( sc.nextLine().trim() ) );
+                }
             }
         }
 
@@ -48,12 +55,12 @@ public class MusicSet
 
     public boolean isVirtual()
         {
-            return isVirtual;
+        return isVirtual;
         }
 
     public void setVirtual( boolean isVirtual )
         {
-            this.isVirtual = isVirtual;
+        this.isVirtual = isVirtual;
         }
 
     }
