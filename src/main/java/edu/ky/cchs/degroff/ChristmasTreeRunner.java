@@ -21,7 +21,8 @@ public class ChristmasTreeRunner
         {
         // ----------------------------------------------------------------------
         // Set up the first music set instructions
-        String inFile = "instructions/bing.txt";
+        String inFile = "instructions/JingleBells.txt";
+        // String inFile = "instructions/bing.txt";
         if ( args.length > 0 )
             {
             System.out.println( args[0] );
@@ -39,7 +40,7 @@ public class ChristmasTreeRunner
         // ----------------------------------------------------------------------
         // Start playing the right file
         System.out.println( "Reading music [" + set.getMusicFile() + "]" );
-        Audio.playMP3( set.getMusicFile() );
+        Audio.playMP3New( set.getMusicFile() );
 
         // ----------------------------------------------------------------------
         // Start the timer
@@ -53,7 +54,7 @@ public class ChristmasTreeRunner
             {
             // ----------------------------------------------------------------------
             // Continue to loop while there are instructions
-            while ( iCnt < instructions.size() )
+            while ( iCnt <= instructions.size() )
                 {
                 // ----------------------------------------------------------------------
                 // if the next instruction is now or passed...
