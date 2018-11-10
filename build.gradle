@@ -30,12 +30,12 @@ bootJar {
 }
 
 dependencies {
-	implementation('org.springframework.boot:spring-boot-starter')
-	compile group: 'javax.media', name: 'jmf', version: '2.1.1e'
-	//compile group: 'com.pi4j', name: 'pi4j-core', version: '1.2-SNAPSHOT'
-
+	// implementation('org.springframework.boot:spring-boot-starter')
+	// compile group: 'javax.media', name: 'jmf', version: '2.1.1e' [OLD / NOT USED]
+	// compile group: 'com.pi4j', name: 'pi4j-core', version: '1.2-SNAPSHOT'
+	// compile group: 'javazoom', name: 'jlayer', version: '1.0.1'
 	compile fileTree( dir: 'src/main/resources/lib', include: '*.jar' )
 
 	
-	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	// testImplementation('org.springframework.boot:spring-boot-starter-test')
 }

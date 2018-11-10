@@ -19,8 +19,10 @@ public class SwingUtil
         Strand blue2 = new Strand( Color.BLUE );
         Strand red1 = new Strand( Color.RED );
         Strand red2 = new Strand( Color.RED );
-        Strand multi1 = new Strand( Color.GREEN );
-        Strand multi2 = new Strand( Color.GREEN );
+        Strand white1 = new Strand( Color.WHITE );
+        Strand white2 = new Strand( Color.WHITE );
+        Strand multi1 = new Strand( Color.BLACK );
+        Strand multi2 = new Strand( Color.BLACK );
 
         int line = 40;
         ArrayList<Integer> evenSpace = new ArrayList<>();
@@ -28,42 +30,50 @@ public class SwingUtil
         ArrayList<Integer> oddSpace = new ArrayList<>();
         oddSpace.addAll( Arrays.asList( new Integer[] { 230, 250 } ) );
 
-        treeStrands.put( 1, green1 );
+        treeStrands.put( 1, white1 );
         treeStrands.put( 2, blue1 );
         treeStrands.put( 3, red1 );
-        treeStrands.put( 4, green2 );
-        treeStrands.put( 5, blue2 );
-        treeStrands.put( 6, red2 );
-        treeStrands.put( 7, multi1 );
-        treeStrands.put( 8, multi2 );
+        treeStrands.put( 4, green1 );
+        treeStrands.put( 5, white2 );
+        treeStrands.put( 6, blue2 );
+        treeStrands.put( 7, red2 );
+        treeStrands.put( 8, multi1 );
 
-        addLine( green1, evenSpace, 40 );
-        addLine( green1, oddSpace, 60 );
-        addLine( green1, evenSpace, 80 );
+        treeStrands.get( 8 ).addLight( 100, 100 );
+        treeStrands.get( 8 ).addLight( 90, 120 );
+        treeStrands.get( 8 ).addLight( 110, 120 );
+        treeStrands.get( 8 ).addLight( 80, 140 );
+        treeStrands.get( 8 ).addLight( 100, 140 );
+        treeStrands.get( 8 ).addLight( 120, 140 );
 
-        addLine( blue1, oddSpace, 100 );
-        addLine( blue1, evenSpace, 120 );
-        addLine( blue1, oddSpace, 140 );
+        addLine( treeStrands.get( 1 ), evenSpace, 40 );
+        addLine( treeStrands.get( 1 ), oddSpace, 60 );
+        addLine( treeStrands.get( 1 ), evenSpace, 80 );
 
-        addLine( red1, evenSpace, 160 );
-        addLine( red1, oddSpace, 180 );
-        addLine( red1, evenSpace, 200 );
+        addLine( treeStrands.get( 2 ), oddSpace, 100 );
+        addLine( treeStrands.get( 2 ), evenSpace, 120 );
+        addLine( treeStrands.get( 2 ), oddSpace, 140 );
+
+        addLine( treeStrands.get( 3 ), evenSpace, 160 );
+        addLine( treeStrands.get( 3 ), oddSpace, 180 );
+        addLine( treeStrands.get( 3 ), evenSpace, 200 );
 
         trimLine( evenSpace );
-        addLine( green2, evenSpace, 220 );
-        addLine( green2, oddSpace, 240 );
-        addLine( green2, evenSpace, 260 );
+        addLine( treeStrands.get( 4 ), evenSpace, 220 );
+        addLine( treeStrands.get( 4 ), oddSpace, 240 );
+        addLine( treeStrands.get( 4 ), evenSpace, 260 );
 
         trimLine( oddSpace );
         trimLine( evenSpace );
-        addLine( blue2, oddSpace, 280 );
-        addLine( blue2, evenSpace, 300 );
-        addLine( blue2, oddSpace, 320 );
+        addLine( treeStrands.get( 5 ), oddSpace, 280 );
+        addLine( treeStrands.get( 5 ), evenSpace, 300 );
+
+        addLine( treeStrands.get( 6 ), oddSpace, 320 );
+        addLine( treeStrands.get( 6 ), evenSpace, 340 );
 
         // trimLine( evenSpace );
-        addLine( red2, evenSpace, 340 );
-        addLine( red2, oddSpace, 360 );
-        addLine( red2, evenSpace, 380 );
+        addLine( treeStrands.get( 7 ), oddSpace, 360 );
+        addLine( treeStrands.get( 7 ), evenSpace, 380 );
 
         return treeStrands;
         }

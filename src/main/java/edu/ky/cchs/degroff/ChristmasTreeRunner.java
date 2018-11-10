@@ -1,6 +1,6 @@
 package edu.ky.cchs.degroff;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import edu.ky.cchs.degroff.audio.Audio;
@@ -17,12 +17,11 @@ public class ChristmasTreeRunner
         // TODO Auto-generated constructor stub
         }
 
-    public static void main( String[] args ) throws InterruptedException, FileNotFoundException
+    public static void main( String[] args ) throws InterruptedException, IOException
         {
-
         // ----------------------------------------------------------------------
         // Set up the first music set instructions
-        String inFile = "src/main/resources/instructions/bing.txt";
+        String inFile = "instructions/WishYouMerry.txt";
         if ( args.length > 0 )
             {
             System.out.println( args[0] );
@@ -39,7 +38,8 @@ public class ChristmasTreeRunner
 
         // ----------------------------------------------------------------------
         // Start playing the right file
-        Audio.playMP3( set.getMusicFile() );
+        System.out.println( "Reading music [" + set.getMusicFile() + "]" );
+        Audio.playMP3New( set.getMusicFile() );
 
         // ----------------------------------------------------------------------
         // Start the timer
@@ -53,7 +53,7 @@ public class ChristmasTreeRunner
             {
             // ----------------------------------------------------------------------
             // Continue to loop while there are instructions
-            while ( iCnt < instructions.size() )
+            while ( iCnt <= instructions.size() )
                 {
                 // ----------------------------------------------------------------------
                 // if the next instruction is now or passed...
