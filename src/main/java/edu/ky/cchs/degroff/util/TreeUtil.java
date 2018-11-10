@@ -11,10 +11,6 @@ import org.springframework.core.io.Resource;
 public class TreeUtil
     {
 
-    private TreeUtil()
-        {
-        }
-
     public static InputStream getResource( String val ) throws IOException
         {
         System.out.println( "Attempting to get resource [" + val + "]" );
