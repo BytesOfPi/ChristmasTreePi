@@ -21,7 +21,8 @@ public class ChristmasTreeRunner
         {
         // ----------------------------------------------------------------------
         // Set up the first music set instructions
-        String inFile = "instructions/JingleBells.txt";
+        String inFile = "instructions/COTBPiano.txt";
+        // String inFile = "instructions/JingleBells.txt";
         // String inFile = "instructions/bing.txt";
         if ( args.length > 0 )
             {
