@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import edu.ky.cchs.degroff.util.TreeUtil;
+import edu.ky.cchs.degroff.util.TreeResourceUtil;
 
 public class MusicSet
     {
@@ -14,13 +14,14 @@ public class MusicSet
     private String musicFile;
     private boolean isVirtual;
     private List<Instruction> instructions = new ArrayList<>();
+    private static TreeResourceUtil util = new TreeResourceUtil();
 
     public MusicSet( String instructionFile ) throws IOException
         {
         // ----------------------------------------------------------------------
         // Use Scanner to read in the text file
         System.out.println( "Reading instructions [" + instructionFile + "]" );
-        try ( InputStream resourceInputStream = TreeUtil.getResource( instructionFile ) )
+        try ( InputStream resourceInputStream = util.getResource( instructionFile ) )
             {
             Scanner sc = new Scanner( resourceInputStream );
             // File file = new File( instructionFile );

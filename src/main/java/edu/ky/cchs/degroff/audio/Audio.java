@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 //import javax.media.PlugInManager;
 //import javax.media.format.AudioFormat;
 
-import edu.ky.cchs.degroff.util.TreeUtil;
+import edu.ky.cchs.degroff.util.TreeResourceUtil;
 import javazoom.jl.decoder.JavaLayerException;
 
 public class Audio
@@ -37,6 +37,7 @@ public class Audio
     // ex.printStackTrace();
     // }
     // }
+    private static TreeResourceUtil util = new TreeResourceUtil();
 
     public static void playMP3New( String mp3Location )
         {
@@ -45,7 +46,7 @@ public class Audio
         executor.submit( () -> {
         try
             {
-            new javazoom.jl.player.Player( TreeUtil.getResource( mp3Location ) ).play();
+            new javazoom.jl.player.Player( util.getResource( mp3Location ) ).play();
             }
         catch ( JavaLayerException | IOException ex )
             {
