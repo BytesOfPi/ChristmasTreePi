@@ -30,6 +30,7 @@ public class Light
 
     public void draw( Graphics g, boolean isOn )
         {
+        if ( !isOn ) return;
         g.setColor( isOn ? clr : Color.LIGHT_GRAY );
         g.fillOval( xPos, yPos, size, size );
         }

@@ -23,7 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import edu.ky.cchs.degroff.ITree;
-import edu.ky.cchs.degroff.util.TreeUtil;
+import edu.ky.cchs.degroff.util.TreeResourceUtil;
 
 public class TreeVirtual extends JPanel implements ITree, ActionListener
     {
@@ -33,6 +33,7 @@ public class TreeVirtual extends JPanel implements ITree, ActionListener
     Map<Integer, Strand> strands = new HashMap<>();
     private long startTime;
     List<String> timeCapture = new ArrayList<>();
+    private static TreeResourceUtil util = new TreeResourceUtil();
 
     private final String LABEL_VERSE1 = "Verse 1";
     private final String LABEL_VERSE2 = "Verse 2";
@@ -57,7 +58,7 @@ public class TreeVirtual extends JPanel implements ITree, ActionListener
             // -----------------------------------------------------------------------------------
             // Add Start Button
             // imgTree = ImageIO.read( new File( "src/main/resources/Tree.jpg" ) );
-            try ( InputStream is = TreeUtil.getResource( "Tree.jpg" ) )
+            try ( InputStream is = util.getResource( "Tree.jpg" ) )
                 {
                 imgTree = ImageIO.read( is );
                 }
