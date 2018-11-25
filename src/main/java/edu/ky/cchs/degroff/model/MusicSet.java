@@ -13,6 +13,8 @@ public class MusicSet
 
     private String musicFile;
     private boolean isVirtual;
+    private String title;
+    private String category;
     private List<Instruction> instructions = new ArrayList<>();
     private static TreeResourceUtil util = new TreeResourceUtil();
 
@@ -34,6 +36,22 @@ public class MusicSet
             // ----------------------------------------------------------------------
             // The first line should be where the MP3 file is found
             setVirtual( Boolean.parseBoolean( sc.nextLine() ) );
+
+            // ----------------------------------------------------------------------
+            // Grab the next line. If it has a colon in it, it's an old instruction
+            // otherwise, it is newer and has the Title and Category in it
+            String check = sc.nextLine().trim();
+            if ( check.contains( ":" ) )
+                {
+                setTitle( instructionFile );
+                setCategory( "Miscellaneous" );
+                instructions.add( new Instruction( check ) );
+                }
+            else
+                {
+                setTitle( check );
+                setCategory( sc.nextLine().trim() );
+                }
 
             // ----------------------------------------------------------------------
             // The rest of the lines are instructions to add
@@ -62,6 +80,26 @@ public class MusicSet
     public void setVirtual( boolean isVirtual )
         {
         this.isVirtual = isVirtual;
+        }
+
+    public String getTitle()
+        {
+        return title;
+        }
+
+    public void setTitle( String title )
+        {
+        this.title = title;
+        }
+
+    public String getCategory()
+        {
+        return category;
+        }
+
+    public void setCategory( String category )
+        {
+        this.category = category;
         }
 
     }

@@ -169,7 +169,7 @@ public class TreeVirtual extends JPanel implements ITree, ActionListener
         // -----------------------------------------------------------------------------------
         // Calculate the current time compared to the song
         long timecap = System.currentTimeMillis() - startTime;
-        timeCapture.add( timecap + ":XXX:XXX:" + label );
+        timeCapture.add( timecap + "\tXXX\tXXX\t" + label );
         }
 
     @Override
