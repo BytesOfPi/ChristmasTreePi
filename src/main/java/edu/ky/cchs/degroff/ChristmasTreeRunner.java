@@ -45,6 +45,8 @@ public class ChristmasTreeRunner
         // ----------------------------------------------------------------------
         // Start the timer
         long startTime = System.currentTimeMillis();
+        int playerSync = 0;
+
         // ----------------------------------------------------------------------
         // Start the tree
         ITree tree = set.isVirtual() ? new TreeVirtual( startTime ) : new TreePi();
@@ -57,10 +59,21 @@ public class ChristmasTreeRunner
             while ( iCnt <= instructions.size() )
                 {
                 // ----------------------------------------------------------------------
+                // If this is the first time and we haven't synched music to start of run
+                // let's do that...
+                if ( playerSync == 0 )
+                    {
+                    startTime = System.currentTimeMillis();
+                    playerSync = Audio.getTime();
+                    if ( playerSync != 0 )
+                        {
+                        startTime -= playerSync;
+                        }
+                    }
+                // ----------------------------------------------------------------------
                 // if the next instruction is now or passed...
                 if ( nextTime <= System.currentTimeMillis() - startTime )
                     {
-                    Long holdTime = nextTime;
                     // ----------------------------------------------------------------------
                     // Execute instructions
                     nextInstruct.setTree( tree );
@@ -69,7 +82,6 @@ public class ChristmasTreeRunner
                     nextInstruct = instructions.get( iCnt++ );
                     nextTime = nextInstruct.getTime();
                     }
-
                 }
             }
         finally

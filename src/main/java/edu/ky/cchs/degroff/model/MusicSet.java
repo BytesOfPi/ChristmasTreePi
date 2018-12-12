@@ -41,7 +41,7 @@ public class MusicSet
             // Grab the next line. If it has a colon in it, it's an old instruction
             // otherwise, it is newer and has the Title and Category in it
             String check = sc.nextLine().trim();
-            if ( check.contains( ":" ) )
+            if ( check.contains( ":" ) || check.contains( "\t" ) )
                 {
                 setTitle( instructionFile );
                 setCategory( "Miscellaneous" );

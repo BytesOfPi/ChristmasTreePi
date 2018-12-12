@@ -13,10 +13,11 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 import edu.ky.cchs.degroff.util.TreeResourceUtil;
 import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 
 public class Audio
     {
-
+    private static Player player = null;
     // // "data/audioFiles/abc.mp3"
     // public static void playMP3( String mp3Location )
     // {
@@ -46,7 +47,8 @@ public class Audio
         executor.submit( () -> {
         try
             {
-            new javazoom.jl.player.Player( util.getResource( mp3Location ) ).play();
+            player = new Player( util.getResource( mp3Location ) );
+            player.play();
             }
         catch ( JavaLayerException | IOException ex )
             {
@@ -54,5 +56,12 @@ public class Audio
             }
         } );
         executor.shutdown();
+        }
+
+    public static int getTime()
+        {
+        if ( player != null ) { return player.getPosition(); }
+        System.out.println( "1" );
+        return 0;
         }
     }
