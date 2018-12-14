@@ -21,10 +21,12 @@ public class TreeResourceUtil
     // private static List<String> claspathPaths = Arrays.asList( new String[] {
     // "**/instructions/", "**/music/" } );
 
-    private static List<String> instructPaths = Arrays.asList( new String[] { "classpath*:",
-            "classpath*:**/instructions/", "file:", "file:./**/instructions/", "file:/media/pi/**/instructions/" } );
-    private static List<String> musicPaths = Arrays.asList( new String[] { "classpath*:**/music/", "file:",
-            "file:./src/main/resources/music", "file:./**/music/", "file:/media/pi/**/music/" } );
+    private static List<String> instructPaths = Arrays
+            .asList( new String[] { "classpath*:", "classpath*:**/instructions/", "file:", "file:./**/instructions/",
+                    "file:f:/**/instructions/**/", "file:/media/pi/**/instructions/" } );
+    private static List<String> musicPaths = Arrays
+            .asList( new String[] { "classpath*:**/music/", "file:", "file:./src/main/resources/music",
+                    "file:./**/music/", "file:f:/**/music/**/", "file:/media/pi/**/music/" } );
 
     private static List<String> allPaths = new ArrayList<>();
     static

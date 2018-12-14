@@ -23,6 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import edu.ky.cchs.degroff.ITree;
+import edu.ky.cchs.degroff.audio.Audio;
 import edu.ky.cchs.degroff.util.TreeResourceUtil;
 
 public class TreeVirtual extends JPanel implements ITree, ActionListener
@@ -168,8 +169,9 @@ public class TreeVirtual extends JPanel implements ITree, ActionListener
         {
         // -----------------------------------------------------------------------------------
         // Calculate the current time compared to the song
-        long timecap = System.currentTimeMillis() - startTime;
-        timeCapture.add( timecap + ":XXX:XXX:" + label );
+        // long timecap = System.currentTimeMillis() - startTime;
+        int timecap = Audio.getTime() - 50;
+        timeCapture.add( timecap + "\tXXX\tXXX\t" + label );
         }
 
     @Override
